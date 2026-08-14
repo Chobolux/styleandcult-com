@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style & Culture | Official Store</title>
+    <style>
+        :root {
+            --bg-main: #0d0d0e;
+            --bg-card: #161618;
+            --bg-card-hover: #1f1f23;
+            --bg-modal: #18181b;
+            --silver-primary: #f0f0f2;
+            --silver-secondary: #c4c4c8;
+            --silver-accent: #8e8e93;
+            --silver-glow: rgba(220, 220, 225, 0.12);
+            --border-color: #27272a;
+            --text-muted: #a1a1aa;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --accent-green: #22c55e;
+            --accent-red: #ef4444;
+            --accent-blue: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--silver-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(13, 13, 14, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: linear-gradient(135deg, #ffffff 0%, #a6a6b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 18px;
+        }
+
+        nav a {
+            color: var(--silver-secondary);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: #ffffff;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .action-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--silver-primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .action-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--silver-secondary);
+        }
+
+        .cart-badge {
+            background: #ffffff;
+            color: #000000;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 2px 7px;
+            border-radius: 10px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            padding: 90px 24px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 65%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+            background: linear-gradient(180deg, #ffffff 0%, #9e9ea6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 620px;
+            margin: 0 auto 32px auto;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #ffffff;
+            color: #000000;
+            padding: 14px 34px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 20px var(--silver-glow);
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+        }
+
+        /* --- Shop & Products --- */
+        .shop-container {
+            max-width: 1280px;
+            margin: 60px auto;
+            padding: 0 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--silver-secondary);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.25s, border-color 0.25s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--silver-secondary);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 260px;
+            background: #19191c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.04);
+        }
+
+        .badge-category {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .product-price {
+            font-size: 1.15rem;
+            color: var(--silver-primary);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .add-to-cart {
+            margin-top: auto;
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--silver-primary);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .add-to-cart:hover {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        .admin-delete-btn {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #ef4444;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 8px;
+            width: 100%;
+            display: none;
+        }
+
+        .admin-delete-btn:hover {
+            background: #ef4444;
+            color: #ffffff;
+        }
+
+        /* --- Drawer / Slide-Over (Warenkorb) --- */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .drawer-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -480px;
+            width: 100%;
+            max-width: 440px;
+            height: 100%;
+            background: var(--bg-card);
+            border-left: 1px solid var(--border-color);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -8px 0 30px rgba(0, 0, 0, 0.6);
+            transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .drawer-header h3 {
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: var(--silver-accent);
+            font-size: 1.6rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #ffffff;
+        }
+
+        .drawer-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .drawer-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border-color);
+            background: rgba(13, 13, 14, 0.85);
+        }
+
+        /* Cart Items */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 12px 14px;
+            border-radius: 8px;
+        }
+
+        .cart-item-info h4 {
+            font-size: 0.9rem;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-info .price {
+            font-size: 0.85rem;
+            color: var(--silver-secondary);
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--silver-primary);
+            width: 26px;
+            height: 26px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .qty-btn:hover {
+            border-color: #ffffff;
+        }
+
+        .item-qty {
+            font-size: 0.9rem;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .delete-item {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-left: 6px;
+        }
+
+        .delete-item:hover {
+            color: #ef4444;
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 18px;
+        }
+
+        /* --- Modal Popup --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            z-index: 1100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            width: 100%;
+            max-width: 680px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 14px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            font-size: 1.3rem;
+            color: #ffffff;
+        }
+
+        /* Forms in Modal */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            color: var(--silver-secondary);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 11px;
+            color: var(--silver-primary);
+            font-family: inherit;
+            font-size: 0.92rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--silver-secondary);
+        }
+
+        /* Payment Select Options */
+        .payment-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 14px 0 20px 0;
+        }
+
+        .payment-option-card {
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .payment-option-card:hover {
+            border-color: var(--silver-accent);
+        }
+
+        .payment-option-card.selected {
+            border-color: #ffffff;
+            background: var(--bg-card-hover);
+        }
+
+        .payment-details-box {
+            background: var(--bg-main);
+            border: 1px dashed var(--border-color);
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .primary-action-btn {
+            width: 100%;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+        }
+
+        .primary-action-btn:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        /* --- Admin Navigation Tabs --- */
+        .admin-nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab-btn {
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            color: var(--silver-secondary);
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .admin-tab-btn.active {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        .admin-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        /* Order Cards in Admin */
+        .order-card {
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            font-size: 0.88rem;
+            transition: border-color 0.2s;
+        }
+
+        .order-card.ordered {
+            border-left: 4px solid var(--accent-green);
+            opacity: 0.85;
+        }
+
+        .order-card.pending {
+            border-left: 4px solid #f59e0b;
+        }
+
+        .order-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .order-status-pill {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .status-ordered {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+        }
+
+        .status-pending {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+
+        .order-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .toggle-ordered-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.88rem;
+        }
+
+        .printify-copy-box {
+            background: #111113;
+            border: 1px solid #222226;
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.78rem;
+            color: var(--silver-secondary);
+            margin-top: 8px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        /* --- Info / Service Sections --- */
+        .info-section-wrapper {
+            max-width: 1280px;
+            margin: 80px auto 40px auto;
+            padding: 0 24px;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 36px;
+            margin-bottom: 36px;
+        }
+
+        .info-card h2 {
+            font-size: 1.6rem;
+            color: #ffffff;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 {
+            font-size: 1.15rem;
+            color: var(--silver-primary);
+            margin: 20px 0 8px 0;
+        }
+
+        .info-card p, .info-card li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .info-card ul {
+            padding-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        .size-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .size-table th, .size-table td {
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        .size-table th {
+            background-color: var(--bg-main);
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .size-table td {
+            color: var(--silver-secondary);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 6px 0;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            padding-top: 0;
+        }
+
+        .faq-answer.open {
+            max-height: 250px;
+            padding-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            background: #09090a;
+            padding: 60px 24px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto 40px auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 24px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .admin-login-link {
+            color: var(--silver-accent);
+            text-decoration: none;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .admin-login-link:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 900px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 650px) {
+            nav ul { display: none; }
+            .hero h1 { font-size: 2.2rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .payment-options { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">STYLE & CULTURE</a>
+            <nav>
+                <ul>
+                    <li><a href="#shop" class="nav-link active" data-filter="all">Alles</a></li>
+                    <li><a href="#shop" class="nav-link" data-filter="herren">Herren</a></li>
+                    <li><a href="#shop" class="nav-link" data-filter="damen">Damen</a></li>
+                    <li><a href="#shop" class="nav-link" data-filter="tassen">Tassen</a></li>
+                    <li><a href="#shop" class="nav-link" data-filter="poster">Poster</a></li>
+                    <li><a href="#shop" class="nav-link" data-filter="accessoires">Accessoires</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="action-btn" id="admin-header-btn" title="Admin Login">
+                    <span>⚙️ Admin</span>
+                </button>
+                <button class="action-btn" id="open-cart-btn">
+                    <span>Warenkorb</span>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Side Drawer Cart -->
+    <div class="drawer-overlay" id="cart-overlay"></div>
+    <aside class="drawer" id="cart-drawer">
+        <div class="drawer-header">
+            <h3>Warenkorb (<span id="cart-drawer-count">0</span>)</h3>
+            <button class="close-btn" id="close-cart-btn">&times;</button>
+        </div>
+        <div class="drawer-content" id="cart-items-container">
+            <p style="text-align: center; color: var(--text-muted); margin-top: 50px;">Dein Warenkorb ist aktuell leer.</p>
+        </div>
+        <div class="drawer-footer">
+            <div class="cart-total-row">
+                <span>Gesamtsumme:</span>
+                <span id="cart-total-price">0,00 €</span>
+            </div>
+            <button type="button" class="primary-action-btn" id="open-checkout-modal-btn" disabled>
+                Zur Kasse gehen
+            </button>
+            <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-top: 10px;">
+                Sichere und verschlüsselte Bestellabwicklung
+            </p>
+        </div>
+    </aside>
+
+    <!-- Hero Section (Texte editierbar im Admin) -->
+    <section class="hero">
+        <h1 id="dyn-hero-title">STYLE & CULTURE</h1>
+        <p id="dyn-hero-subtitle">Exklusive Streetwear, Kunst und Accessoires – handgefertigt & on demand für dich produziert.</p>
+        <a href="#shop" class="btn-primary" id="dyn-hero-cta">Kollektion entdecken</a>
+    </section>
+
+    <!-- Main Shop Area -->
+    <main class="shop-container" id="shop">
+        <div class="section-header">
+            <h2 id="dyn-collection-title">Aktuelle Kollektion</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Alles</button>
+                <button class="filter-btn" data-filter="herren">Herren</button>
+                <button class="filter-btn" data-filter="damen">Damen</button>
+                <button class="filter-btn" data-filter="tassen">Tassen</button>
+                <button class="filter-btn" data-filter="poster">Poster</button>
+                <button class="filter-btn" data-filter="accessoires">Accessoires</button>
+            </div>
+        </div>
+
+        <!-- Dynamisches Produkt Grid -->
+        <div class="product-grid" id="product-grid">
+            <!-- Wird per JavaScript aus dem Speicher gerendert -->
+        </div>
+    </main>
+
+    <!-- Modal 1: Checkout / Kasse -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Bestellung abschließen</h3>
+                <button class="close-btn" id="close-checkout-modal">&times;</button>
+            </div>
+            <!-- Formspree Endpoint für direkte Mail an styleandcult@gmail.com -->
+            <form id="checkout-form" action="https://formspree.io/f/styleandcult@gmail.com" method="POST">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="c-vorname">Vorname *</label>
+                        <input type="text" id="c-vorname" name="Vorname" required placeholder="Max">
+                    </div>
+                    <div class="form-group">
+                        <label for="c-nachname">Nachname *</label>
+                        <input type="text" id="c-nachname" name="Nachname" required placeholder="Mustermann">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="c-email">E-Mail-Adresse (für Bestellbestätigung) *</label>
+                        <input type="email" id="c-email" name="Email" required placeholder="max@beispiel.de">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="c-adresse">Straße & Hausnummer *</label>
+                        <input type="text" id="c-adresse" name="Adresse" required placeholder="Musterstraße 12">
+                    </div>
+                    <div class="form-group">
+                        <label for="c-plz">Postleitzahl *</label>
+                        <input type="text" id="c-plz" name="PLZ" required placeholder="10115">
+                    </div>
+                    <div class="form-group">
+                        <label for="c-stadt">Stadt *</label>
+                        <input type="text" id="c-stadt" name="Stadt" required placeholder="Berlin">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="c-land">Land *</label>
+                        <select id="c-land" name="Land">
+                            <option value="Deutschland">Deutschland</option>
+                            <option value="Österreich">Österreich</option>
+                            <option value="Schweiz">Schweiz</option>
+                        </select>
+                    </div>
+
+                    <!-- Zahlungsauswahl -->
+                    <div class="form-group full-width" style="margin-top: 10px;">
+                        <label>Zahlungsmethode wählen *</label>
+                        <div class="payment-options">
+                            <div class="payment-option-card selected" data-method="bank">
+                                <input type="radio" name="payment_method" value="Banküberweisung" checked>
+                                <div>
+                                    <strong>Banküberweisung</strong>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted);">Vorkasse / IBAN</div>
+                                </div>
+                            </div>
+                            <div class="payment-option-card" data-method="invoice">
+                                <input type="radio" name="payment_method" value="Rechnung / Vorkasse">
+                                <div>
+                                    <strong>Rechnung</strong>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted);">Zahlung nach Bestätigung</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment-details-box" id="dyn-payment-instruction-box">
+                            ℹ️ Nach Klick auf „Kostenpflichtig bestellen“ werden die Bestelldaten direkt an <strong>styleandcult@gmail.com</strong> und an deine E-Mail gesendet. Sobald die Zahlung eingegangen ist, wird der Druckauftrag bei Printify freigegeben.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 16px 0; font-size: 0.85rem; color: var(--text-muted);">
+                    Gesamtsumme inkl. Versand: <strong id="checkout-final-price" style="color: #ffffff; font-size: 1.1rem;">0,00 €</strong>
+                </div>
+
+                <button type="submit" class="primary-action-btn">Kostenpflichtig bestellen</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 2: Admin Login / Dashboard mit 3 Reitern/Seiten -->
+    <div class="modal-overlay" id="admin-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="admin-modal-title">Admin Login</h3>
+                <button class="close-btn" id="close-admin-modal">&times;</button>
+            </div>
+
+            <!-- Login Bereich -->
+            <div id="admin-login-view">
+                <form id="admin-login-form">
+                    <div class="form-group" style="margin-bottom: 14px;">
+                        <label for="admin-user">Admin Benutzername</label>
+                        <input type="text" id="admin-user" required placeholder="Benutzername">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="admin-pass">Passwort</label>
+                        <input type="password" id="admin-pass" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="primary-action-btn">Einloggen</button>
+                </form>
+            </div>
+
+            <!-- Dashboard Bereich (nach Login) -->
+            <div id="admin-dashboard-view" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                    <div class="admin-status-badge">
+                        <span>● Angemeldet als: <strong>chobo</strong></span>
+                    </div>
+                    <button id="admin-logout-btn" style="background: none; border: 1px solid var(--border-color); color: var(--text-muted); padding: 4px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem;">Abmelden</button>
+                </div>
+
+                <!-- Admin Reiter / 3 Seiten -->
+                <div class="admin-nav-tabs">
+                    <button class="admin-tab-btn active" id="tab-btn-add" onclick="switchAdminTab('add')">+ Produkte anlegen</button>
+                    <button class="admin-tab-btn" id="tab-btn-orders" onclick="switchAdminTab('orders')">📋 Bestellungen (<span id="admin-order-count">0</span>)</button>
+                    <button class="admin-tab-btn" id="tab-btn-texts" onclick="switchAdminTab('texts')">✏️ Texte bearbeiten</button>
+                </div>
+
+                <!-- Seite 1: Produkte hinzufügen -->
+                <div id="admin-tab-add-content">
+                    <h4 style="color: #ffffff; margin-bottom: 12px;">Neues Produkt einstellen</h4>
+                    <form id="add-product-form">
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="p-title">Produktname *</label>
+                                <input type="text" id="p-title" required placeholder="z. B. Vintage Acid Wash Shirt">
+                            </div>
+                            <div class="form-group">
+                                <label for="p-price">Verkaufspreis in € *</label>
+                                <input type="number" step="0.01" id="p-price" required placeholder="39.90">
+                            </div>
+                            <div class="form-group">
+                                <label for="p-category">Kategorie *</label>
+                                <select id="p-category">
+                                    <option value="herren">Herren</option>
+                                    <option value="damen">Damen</option>
+                                    <option value="tassen">Tassen</option>
+                                    <option value="poster">Poster</option>
+                                    <option value="accessoires">Accessoires</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="p-img">Bild-URL (z. B. aus Printify Mockup oder Web-Link) *</label>
+                                <input type="url" id="p-img" required placeholder="https://images.unsplash.com/... oder lokales Bild">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="p-desc">Kurzbeschreibung</label>
+                                <textarea id="p-desc" rows="2" placeholder="Material, Schnitt, Details..."></textarea>
+                            </div>
+                            <div class="full-width">
+                                <button type="submit" class="primary-action-btn" style="background: var(--accent-green); color: #ffffff;">+ Produkt im Shop veröffentlichen</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Seite 2: Bestellungsverwaltung & Abhaken -->
+                <div id="admin-tab-orders-content" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h4 style="color: #ffffff;">Bestellübersicht & Status</h4>
+                        <button onclick="clearCompletedOrders()" style="background: none; border: 1px solid var(--border-color); color: var(--text-muted); padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; cursor: pointer;">Erledigte archivieren</button>
+                    </div>
+                    <div id="admin-orders-list">
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Noch keine Bestellungen eingegangen.</p>
+                    </div>
+                </div>
+
+                <!-- Seite 3: Text-Manager / Content Management (NEU) -->
+                <div id="admin-tab-texts-content" style="display: none;">
+                    <h4 style="color: #ffffff; margin-bottom: 12px;">Shop-Texte anpassen & speichern</h4>
+                    <form id="edit-texts-form">
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="t-hero-title">Hauptüberschrift (Hero Titel)</label>
+                                <input type="text" id="t-hero-title" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="t-hero-subtitle">Hero Untertitel / Slogan</label>
+                                <textarea id="t-hero-subtitle" rows="2" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="t-collection-title">Kollektions-Überschrift</label>
+                                <input type="text" id="t-collection-title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="t-hero-cta">Button Text (Hero)</label>
+                                <input type="text" id="t-hero-cta" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="t-shipping-info">Versand & Fertigungstext</label>
+                                <textarea id="t-shipping-info" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="t-payment-info">Zahlungshinweis Kasse (IBAN / Bankverbindung)</label>
+                                <textarea id="t-payment-info" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="t-impressum-text">Impressums-Angaben</label>
+                                <textarea id="t-impressum-text" rows="3" required></textarea>
+                            </div>
+                            <div class="full-width" style="display: flex; gap: 10px;">
+                                <button type="submit" class="primary-action-btn" style="background: var(--accent-blue); color: #ffffff;">💾 Alle Texte speichern & anwenden</button>
+                                <button type="button" onclick="resetTextsToDefault()" style="background: none; border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 16px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;">Zurücksetzen</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Service & Legal Sections -->
+    <div class="info-section-wrapper">
+
+        <!-- 1. Versand & Rückgabe -->
+        <section id="versand-rueckgabe" class="info-card">
+            <h2>📦 Versand & Rückgabe</h2>
+            <h3>Versand & Fertigung</h3>
+            <p id="dyn-shipping-info">Jedes Produkt wird individuell on demand über unsere verifizierten Druckpartner gefertigt und direkt an deine Adresse verschickt.</p>
+            <ul>
+                <li><strong>Deutschland:</strong> 4,90 € (Kostenloser Versand ab 75 €) – Lieferzeit ca. 3–5 Werktage.</li>
+                <li><strong>Österreich & Schweiz:</strong> 8,90 € – Lieferzeit ca. 4–7 Werktage.</li>
+            </ul>
+            <h3>14 Tage Rückgaberecht</h3>
+            <p>Sollte ein Artikel fehlerhaft sein oder nicht passen, kontaktiere uns bitte unter <strong>styleandcult@gmail.com</strong> für einen unkomplizierten Umtausch.</p>
+        </section>
+
+        <!-- 2. Größentabelle -->
+        <section id="groessentabelle" class="info-card">
+            <h2>📏 Größentabelle</h2>
+            <div class="size-table-container">
+                <table class="size-table">
+                    <thead>
+                        <tr>
+                            <th>Größe</th>
+                            <th>Brustumfang (cm)</th>
+                            <th>Länge (cm)</th>
+                            <th>Passform</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>S</strong></td><td>90 – 96</td><td>68</td><td>Regular / Slim</td></tr>
+                        <tr><td><strong>M</strong></td><td>97 – 104</td><td>71</td><td>Regular Fit</td></tr>
+                        <tr><td><strong>L</strong></td><td>105 – 112</td><td>74</td><td>Oversized Fit</td></tr>
+                        <tr><td><strong>XL</strong></td><td>113 – 122</td><td>77</td><td>Relaxed Loose</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 3. Kontakt -->
+        <section id="kontakt" class="info-card">
+            <h2>✉️ Kontakt & Support</h2>
+            <p>Fragen zu Produkten oder deiner Bestellung? Schreib uns direkt an <strong><a href="mailto:styleandcult@gmail.com" style="color: #ffffff; text-decoration: underline;">styleandcult@gmail.com</a></strong> oder nutze das Kontaktformular:</p>
+            <form action="https://formspree.io/f/styleandcult@gmail.com" method="POST" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px;">
+                <input type="text" name="name" placeholder="Name" required style="padding: 10px; background: var(--bg-main); border: 1px solid var(--border-color); color: #fff; border-radius: 6px;">
+                <input type="email" name="email" placeholder="E-Mail" required style="padding: 10px; background: var(--bg-main); border: 1px solid var(--border-color); color: #fff; border-radius: 6px;">
+                <textarea name="message" placeholder="Nachricht" rows="3" required style="grid-column: span 2; padding: 10px; background: var(--bg-main); border: 1px solid var(--border-color); color: #fff; border-radius: 6px;"></textarea>
+                <button type="submit" class="btn-primary" style="grid-column: span 2; cursor: pointer;">Nachricht senden</button>
+            </form>
+        </section>
+
+        <!-- 4. FAQ -->
+        <section id="faq" class="info-card">
+            <h2>❓ Häufige Fragen (FAQ)</h2>
+            <div class="faq-item">
+                <button class="faq-question">Wie wird meine Bestellung produziert? <span>+</span></button>
+                <div class="faq-answer">Deine Artikel werden direkt nach Auftragseingang und Zahlungseingang individuell im hochwertigen Print-on-Demand-Verfahren hergestellt.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Wohin geht die Bestellbestätigung? <span>+</span></button>
+                <div class="faq-answer">Jede Bestellung wird automatisch an styleandcult@gmail.com sowie an deine angegebene Kunden-E-Mail übermittelt.</div>
+            </div>
+        </section>
+
+        <!-- 5. Impressum, Datenschutz, AGB -->
+        <section id="impressum" class="info-card">
+            <h2>⚖️ Impressum & Rechtliches</h2>
+            <p id="dyn-impressum-text"><strong>Style & Culture Online Store</strong><br>Betreiber & Verwaltung: chobo<br>E-Mail: styleandcult@gmail.com<br>Musterstraße 42, 10115 Berlin</p>
+            <p><strong>Datenschutz:</strong> Alle Bestelldaten werden vertraulich an styleandcult@gmail.com übertragen und ausschließlich zur Versand- und Produktionsabwicklung gespeichert.</p>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Style & Culture</h4>
+                <p>Minimalistische Dark-Aesthetics & Streetwear. Jedes Stück ein Unikat.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Kategorien</h4>
+                <ul>
+                    <li><a href="#shop" class="nav-link" data-filter="all">Alle Produkte</a></li>
+                    <li><a href="#shop" class="nav-link" data-filter="herren">Herren</a></li>
+                    <li><a href="#shop" class="nav-link" data-filter="damen">Damen</a></li>
+                    <li><a href="#shop" class="nav-link" data-filter="tassen">Tassen</a></li>
+                    <li><a href="#shop" class="nav-link" data-filter="poster">Poster</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Service</h4>
+                <ul>
+                    <li><a href="#versand-rueckgabe">Versand & Rückgabe</a></li>
+                    <li><a href="#groessentabelle">Größentabelle</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Rechtliches</h4>
+                <ul>
+                    <li><a href="#impressum">Impressum</a></li>
+                    <li><a href="#impressum">Datenschutz</a></li>
+                    <li><a href="#impressum">AGB</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Style and Culture. E-Mail: styleandcult@gmail.com</span>
+            <span class="admin-login-link" id="admin-footer-btn">🔒 Händler Login (chobo)</span>
+        </div>
+    </footer>
+
+    <!-- JavaScript: Shop, Cart, Mail-Trigger, Admin 3-Tab-System & Text-Editor -->
+    <script>
+        // --- 1. Standard-Texte & Standard-Produkte ---
+        const DEFAULT_TEXTS = {
+            heroTitle: "STYLE & CULTURE",
+            heroSubtitle: "Exklusive Streetwear, Kunst und Accessoires – handgefertigt & on demand für dich produziert.",
+            heroCta: "Kollektion entdecken",
+            collectionTitle: "Aktuelle Kollektion",
+            shippingInfo: "Jedes Produkt wird individuell on demand über unsere verifizierten Druckpartner gefertigt und direkt an deine Adresse verschickt.",
+            paymentInfo: "ℹ️ Nach Klick auf „Kostenpflichtig bestellen“ werden die Bestelldaten direkt an styleandcult@gmail.com und an deine E-Mail gesendet. Sobald die Zahlung eingegangen ist, wird der Druckauftrag bei Printify freigegeben.",
+            impressumText: "Style & Culture Online Store\nBetreiber & Verwaltung: chobo\nE-Mail: styleandcult@gmail.com\nMusterstraße 42, 10115 Berlin"
+        };
+
+        const DEFAULT_PRODUCTS = [
+            {
+                id: 1,
+                title: "Heavyweight Hoodie Dark Silver",
+                category: "herren",
+                price: 69.90,
+                desc: "380 GSM Bio-Baumwolle, Oversized Fit.",
+                image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                title: "Aesthetic Culture Tee",
+                category: "damen",
+                price: 34.90,
+                desc: "100% gekämmte Baumwolle, lockerer Schnitt.",
+                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                title: "Dark Edition Keramikbecher",
+                category: "tassen",
+                price: 18.90,
+                desc: "325 ml, mattschwarze Keramik, spülmaschinenfest.",
+                image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 4,
+                title: "Monochrome Architecture Poster",
+                category: "poster",
+                price: 24.90,
+                desc: "Premium 250g Museumspapier, DIN A2.",
+                image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // --- 2. State & Storage ---
+        let shopTexts = JSON.parse(localStorage.getItem('sc_texts')) || DEFAULT_TEXTS;
+        let products = JSON.parse(localStorage.getItem('sc_products')) || DEFAULT_PRODUCTS;
+        let cart = JSON.parse(localStorage.getItem('sc_cart')) || [];
+        let orders = JSON.parse(localStorage.getItem('sc_orders')) || [];
+        let isAdminLoggedIn = sessionStorage.getItem('sc_admin_auth') === 'true';
+
+        // DOM Elemente
+        const productGrid = document.getElementById('product-grid');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartCountBadge = document.getElementById('cart-count');
+        const cartDrawerCount = document.getElementById('cart-drawer-count');
+        const cartTotalPrice = document.getElementById('cart-total-price');
+        const openCheckoutModalBtn = document.getElementById('open-checkout-modal-btn');
+        
+        // Modals
+        const checkoutModal = document.getElementById('checkout-modal');
+        const closeCheckoutModal = document.getElementById('close-checkout-modal');
+        const checkoutForm = document.getElementById('checkout-form');
+        const checkoutFinalPrice = document.getElementById('checkout-final-price');
+
+        const adminModal = document.getElementById('admin-modal');
+        const closeAdminModal = document.getElementById('close-admin-modal');
+        const adminHeaderBtn = document.getElementById('admin-header-btn');
+        const adminFooterBtn = document.getElementById('admin-footer-btn');
+        const adminLoginForm = document.getElementById('admin-login-form');
+        const adminLoginView = document.getElementById('admin-login-view');
+        const adminDashboardView = document.getElementById('admin-dashboard-view');
+        const adminLogoutBtn = document.getElementById('admin-logout-btn');
+        const addProductForm = document.getElementById('add-product-form');
+        const editTextsForm = document.getElementById('edit-texts-form');
+        const adminOrdersList = document.getElementById('admin-orders-list');
+        const adminOrderCount = document.getElementById('admin-order-count');
+
+        // --- 3. Render Texte auf der Website ---
+        function applyShopTexts() {
+            document.getElementById('dyn-hero-title').innerText = shopTexts.heroTitle;
+            document.getElementById('dyn-hero-subtitle').innerText = shopTexts.heroSubtitle;
+            document.getElementById('dyn-hero-cta').innerText = shopTexts.heroCta;
+            document.getElementById('dyn-collection-title').innerText = shopTexts.collectionTitle;
+            document.getElementById('dyn-shipping-info').innerText = shopTexts.shippingInfo;
+            document.getElementById('dyn-payment-instruction-box').innerText = shopTexts.paymentInfo;
+            document.getElementById('dyn-impressum-text').innerText = shopTexts.impressumText;
+
+            // Formularfelder im Admin vorausfüllen
+            document.getElementById('t-hero-title').value = shopTexts.heroTitle;
+            document.getElementById('t-hero-subtitle').value = shopTexts.heroSubtitle;
+            document.getElementById('t-hero-cta').value = shopTexts.heroCta;
+            document.getElementById('t-collection-title').value = shopTexts.collectionTitle;
+            document.getElementById('t-shipping-info').value = shopTexts.shippingInfo;
+            document.getElementById('t-payment-info').value = shopTexts.paymentInfo;
+            document.getElementById('t-impressum-text').value = shopTexts.impressumText;
+        }
+
+        // Texte aus Admin-Formular speichern
+        editTextsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            shopTexts = {
+                heroTitle: document.getElementById('t-hero-title').value.trim(),
+                heroSubtitle: document.getElementById('t-hero-subtitle').value.trim(),
+                heroCta: document.getElementById('t-hero-cta').value.trim(),
+                collectionTitle: document.getElementById('t-collection-title').value.trim(),
+                shippingInfo: document.getElementById('t-shipping-info').value.trim(),
+                paymentInfo: document.getElementById('t-payment-info').value.trim(),
+                impressumText: document.getElementById('t-impressum-text').value.trim()
+            };
+
+            localStorage.setItem('sc_texts', JSON.stringify(shopTexts));
+            applyShopTexts();
+            alert('✅ Alle Texte wurden erfolgreich aktualisiert!');
+        });
+
+        window.resetTextsToDefault = function() {
+            if (confirm('Möchtest du alle Texte auf die Standardwerte zurücksetzen?')) {
+                shopTexts = { ...DEFAULT_TEXTS };
+                localStorage.setItem('sc_texts', JSON.stringify(shopTexts));
+                applyShopTexts();
+            }
+        };
+
+        // --- 4. Render Produkte ---
+        function renderProducts(filter = 'all') {
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+            
+            productGrid.innerHTML = filtered.map(p => `
+                <div class="product-card" data-category="${p.category}">
+                    <div class="product-image">
+                        <span class="badge-category">${p.category}</span>
+                        <img src="${p.image}" alt="${p.title}" onerror="this.src='https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${p.title}</h3>
+                        <p class="product-desc">${p.desc || ''}</p>
+                        <div class="product-price">${p.price.toFixed(2).replace('.', ',')} €</div>
+                        <button class="add-to-cart" onclick="addToCart(${p.id})">In den Warenkorb</button>
+                        <button class="admin-delete-btn" style="display: ${isAdminLoggedIn ? 'block' : 'none'};" onclick="deleteProduct(${p.id})">🗑️ Produkt löschen</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- 5. Cart Logik ---
+        function saveCart() {
+            localStorage.setItem('sc_cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function addToCart(id) {
+            const prod = products.find(p => p.id === id);
+            if (!prod) return;
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ id: prod.id, title: prod.title, price: prod.price, qty: 1 });
+            }
+            saveCart();
+            toggleCart(true);
+        }
+
+        function updateQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+            saveCart();
+        }
+
+        function removeItem(id) {
+            cart = cart.filter(i => i.id !== id);
+            saveCart();
+        }
+
+        function renderCart() {
+            const totalCount = cart.reduce((sum, i) => sum + i.qty, 0);
+            const totalPrice = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+
+            cartCountBadge.innerText = totalCount;
+            cartDrawerCount.innerText = totalCount;
+            cartTotalPrice.innerText = totalPrice.toFixed(2).replace('.', ',') + ' €';
+            checkoutFinalPrice.innerText = totalPrice.toFixed(2).replace('.', ',') + ' €';
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted); margin-top: 50px;">Dein Warenkorb ist aktuell leer.</p>';
+                openCheckoutModalBtn.disabled = true;
+                openCheckoutModalBtn.style.opacity = '0.4';
+                return;
+            }
+
+            openCheckoutModalBtn.disabled = false;
+            openCheckoutModalBtn.style.opacity = '1';
+
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <h4>${item.title}</h4>
+                        <div class="price">${(item.price * item.qty).toFixed(2).replace('.', ',')} € (${item.price.toFixed(2).replace('.', ',')} €/Stk)</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
+                        <span class="item-qty">${item.qty}</span>
+                        <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                        <button class="delete-item" onclick="removeItem(${item.id})">&times;</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleCart(open) {
+            cartOverlay.classList.toggle('open', open);
+            cartDrawer.classList.toggle('open', open);
+        }
+
+        document.getElementById('open-cart-btn').addEventListener('click', () => toggleCart(true));
+        document.getElementById('close-cart-btn').addEventListener('click', () => toggleCart(false));
+        cartOverlay.addEventListener('click', () => toggleCart(false));
+
+        // --- 6. Checkout & Mail-Versand ---
+        openCheckoutModalBtn.addEventListener('click', () => {
+            toggleCart(false);
+            checkoutModal.classList.add('open');
+        });
+
+        closeCheckoutModal.addEventListener('click', () => checkoutModal.classList.remove('open'));
+
+        document.querySelectorAll('.payment-option-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.payment-option-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                card.querySelector('input').checked = true;
+            });
+        });
+
+        checkoutForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (cart.length === 0) return;
+
+            const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+            const customer = {
+                vorname: document.getElementById('c-vorname').value,
+                nachname: document.getElementById('c-nachname').value,
+                email: document.getElementById('c-email').value,
+                adresse: document.getElementById('c-adresse').value,
+                plz: document.getElementById('c-plz').value,
+                stadt: document.getElementById('c-stadt').value,
+                land: document.getElementById('c-land').value,
+                payment: document.querySelector('input[name="payment_method"]:checked').value
+            };
+
+            const orderData = {
+                orderId,
+                date: new Date().toLocaleString('de-DE'),
+                customer,
+                items: [...cart],
+                total: cart.reduce((sum, i) => sum + (i.price * i.qty), 0),
+                orderedAtPrintify: false
+            };
+
+            orders.unshift(orderData);
+            localStorage.setItem('sc_orders', JSON.stringify(orders));
+
+            // Mailversand an styleandcult@gmail.com
+            try {
+                const mailPayload = {
+                    subject: `Neue Shop-Bestellung ${orderId} von ${customer.vorname} ${customer.nachname}`,
+                    orderId: orderId,
+                    kunde: `${customer.vorname} ${customer.nachname}`,
+                    email: customer.email,
+                    lieferadresse: `${customer.adresse}, ${customer.plz} ${customer.stadt}, ${customer.land}`,
+                    zahlungsmethode: customer.payment,
+                    gesamtsumme: orderData.total.toFixed(2) + ' €',
+                    artikel: orderData.items.map(i => `${i.qty}x ${i.title} (${i.price.toFixed(2)} €)`).join('\n')
+                };
+
+                fetch('https://formspree.io/f/styleandcult@gmail.com', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(mailPayload)
+                }).catch(err => console.log('Mailversand Info:', err));
+            } catch (err) {
+                console.log(err);
+            }
+
+            cart = [];
+            saveCart();
+            checkoutModal.classList.remove('open');
+            checkoutForm.reset();
+
+            alert(`🎉 Vielen Dank für deine Bestellung (${orderId})!\n\nAlle Bestelldaten wurden an styleandcult@gmail.com und an deine E-Mail (${customer.email}) gesendet.`);
+            
+            if (isAdminLoggedIn) renderAdminOrders();
+        });
+
+        // --- 7. Admin Login & 3-Tab Dashboard ---
+        function checkAdminUI() {
+            if (isAdminLoggedIn) {
+                adminLoginView.style.display = 'none';
+                adminDashboardView.style.display = 'block';
+                document.getElementById('admin-modal-title').innerText = 'Admin Management Dashboard';
+                renderAdminOrders();
+                applyShopTexts();
+            } else {
+                adminLoginView.style.display = 'block';
+                adminDashboardView.style.display = 'none';
+                document.getElementById('admin-modal-title').innerText = 'Admin Login';
+            }
+            document.querySelectorAll('.admin-delete-btn').forEach(b => {
+                b.style.display = isAdminLoggedIn ? 'block' : 'none';
+            });
+        }
+
+        // Tab-Umschaltung im Admin (add, orders, texts)
+        window.switchAdminTab = function(tabName) {
+            const tabs = ['add', 'orders', 'texts'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-btn-${t}`);
+                const content = document.getElementById(`admin-tab-${t}-content`);
+                if (t === tabName) {
+                    btn.classList.add('active');
+                    content.style.display = 'block';
+                } else {
+                    btn.classList.remove('active');
+                    content.style.display = 'none';
+                }
+            });
+
+            if (tabName === 'orders') renderAdminOrders();
+            if (tabName === 'texts') applyShopTexts();
+        };
+
+        function openAdminModal() {
+            checkAdminUI();
+            adminModal.classList.add('open');
+        }
+
+        adminHeaderBtn.addEventListener('click', openAdminModal);
+        adminFooterBtn.addEventListener('click', openAdminModal);
+        closeAdminModal.addEventListener('click', () => adminModal.classList.remove('open'));
+
+        // Login
+        adminLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = document.getElementById('admin-user').value.trim();
+            const pass = document.getElementById('admin-pass').value.trim();
+
+            if (user === 'chobo' && pass === 'eeGohsh6!') {
+                isAdminLoggedIn = true;
+                sessionStorage.setItem('sc_admin_auth', 'true');
+                adminLoginForm.reset();
+                checkAdminUI();
+                renderProducts();
+            } else {
+                alert('❌ Falscher Benutzername oder falsches Passwort!');
+            }
+        });
+
+        // Logout
+        adminLogoutBtn.addEventListener('click', () => {
+            isAdminLoggedIn = false;
+            sessionStorage.removeItem('sc_admin_auth');
+            checkAdminUI();
+            renderProducts();
+        });
+
+        // Neues Produkt hinzufügen
+        addProductForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('p-title').value.trim();
+            const price = parseFloat(document.getElementById('p-price').value);
+            const category = document.getElementById('p-category').value;
+            const image = document.getElementById('p-img').value.trim();
+            const desc = document.getElementById('p-desc').value.trim();
+
+            const newProduct = {
+                id: Date.now(),
+                title,
+                price,
+                category,
+                image,
+                desc
+            };
+
+            products.push(newProduct);
+            localStorage.setItem('sc_products', JSON.stringify(products));
+            
+            addProductForm.reset();
+            renderProducts();
+            alert('✅ Produkt wurde erfolgreich im Shop veröffentlicht!');
+        });
+
+        // Produkt löschen
+        window.deleteProduct = function(id) {
+            if (!isAdminLoggedIn) return;
+            if (confirm('Möchtest du dieses Produkt wirklich aus dem Shop entfernen?')) {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('sc_products', JSON.stringify(products));
+                renderProducts();
+            }
+        };
+
+        // Status "Bei Printify bestellt" abhaken
+        window.toggleOrderPrintifyStatus = function(orderId) {
+            const order = orders.find(o => o.orderId === orderId);
+            if (!order) return;
+            order.orderedAtPrintify = !order.orderedAtPrintify;
+            localStorage.setItem('sc_orders', JSON.stringify(orders));
+            renderAdminOrders();
+        };
+
+        // Einzelne Bestellung löschen
+        window.deleteOrder = function(orderId) {
+            if (confirm(`Bestellung ${orderId} wirklich löschen?`)) {
+                orders = orders.filter(o => o.orderId !== orderId);
+                localStorage.setItem('sc_orders', JSON.stringify(orders));
+                renderAdminOrders();
+            }
+        };
+
+        // Erledigte Bestellungen archivieren/löschen
+        window.clearCompletedOrders = function() {
+            if (confirm('Möchtest du alle als "Bei Printify bestellt" abgehakten Bestellungen archivieren/löschen?')) {
+                orders = orders.filter(o => !o.orderedAtPrintify);
+                localStorage.setItem('sc_orders', JSON.stringify(orders));
+                renderAdminOrders();
+            }
+        };
+
+        // Render Admin-Bestellungen (Seite 2)
+        function renderAdminOrders() {
+            adminOrderCount.innerText = orders.length;
+
+            if (orders.length === 0) {
+                adminOrdersList.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem; padding: 20px 0; text-align: center;">Aktuell keine Bestellungen vorhanden.</p>';
+                return;
+            }
+
+            adminOrdersList.innerHTML = orders.map(o => `
+                <div class="order-card ${o.orderedAtPrintify ? 'ordered' : 'pending'}">
+                    <div class="order-card-header">
+                        <span>📦 ${o.orderId} (${o.date})</span>
+                        <span class="order-status-pill ${o.orderedAtPrintify ? 'status-ordered' : 'status-pending'}">
+                            ${o.orderedAtPrintify ? '✓ Bei Printify bestellt' : '⏳ Offen'}
+                        </span>
+                    </div>
+                    <div style="color: var(--silver-secondary); margin-bottom: 4px;">
+                        <strong>Kunde:</strong> ${o.customer.vorname} ${o.customer.nachname} (<a href="mailto:${o.customer.email}" style="color: var(--silver-primary);">${o.customer.email}</a>)
+                    </div>
+                    <div style="color: var(--silver-secondary); margin-bottom: 4px;">
+                        <strong>Zahlungsart:</strong> ${o.customer.payment} | <strong>Betrag:</strong> ${o.total.toFixed(2).replace('.', ',')} €
+                    </div>
+                    <div style="color: var(--text-muted); font-size: 0.82rem; margin-top: 6px;">
+                        <strong>Lieferadresse für Printify:</strong><br>
+                        ${o.customer.vorname} ${o.customer.nachname}<br>
+                        ${o.customer.adresse}<br>
+                        ${o.customer.plz} ${o.customer.stadt}, ${o.customer.land}
+                    </div>
+                    <div class="printify-copy-box">Bestellte Artikel für Printify:\n${o.items.map(i => `- ${i.qty}x ${i.title} (${i.price.toFixed(2)} €)`).join('\n')}</div>
+                    
+                    <div class="order-actions">
+                        <label class="toggle-ordered-label">
+                            <input type="checkbox" ${o.orderedAtPrintify ? 'checked' : ''} onchange="toggleOrderPrintifyStatus('${o.orderId}')" style="width: 16px; height: 16px; cursor: pointer;">
+                            <span>Bei Printify manuell bestellt</span>
+                        </label>
+                        <button onclick="deleteOrder('${o.orderId}')" style="margin-left: auto; background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.8rem;">Löschen</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- 8. Filter Navigation ---
+        document.querySelectorAll('.filter-btn, nav .nav-link, .footer-col .nav-link').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const category = btn.getAttribute('data-filter');
+                if (!category) return;
+
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-filter') === category));
+                document.querySelectorAll('nav .nav-link').forEach(l => l.classList.toggle('active', l.getAttribute('data-filter') === category));
+                renderProducts(category);
+            });
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isOpen = answer.classList.contains('open');
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+                document.querySelectorAll('.faq-question span').forEach(s => s.innerText = '+');
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    button.querySelector('span').innerText = '−';
+                }
+            });
+        });
+
+        // Initialisierung beim Start
+        applyShopTexts();
+        renderProducts();
+        renderCart();
+    </script>
+</body>
+</html>
